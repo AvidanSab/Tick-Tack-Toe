@@ -66,20 +66,29 @@ class Board:
         print()
 
     # mark position with X or O
-    Dan
+    def mark(spot,value):
+        for i in range(self.cells)
+            if(value==True):
+                self.cell(spot-1) == 'X'
+            else:
+                self.cell(spot-1) == 'O'
 
     # winner
-    Dan
+    def check_winner();
+        for i in range(len(WINNING_COMBOS)):
+            if()
 
     # when the board is fully marked
-    Dan
+    def marker():
+        for i in range()
 
 
 
 # create the player
 class Player:
     # initializer method: takes players name and their chosen symbol X or O
-    pass
+    def __init__(self):
+        
 
     # make a move: player picks the position on the board where they want to put their X or O
     John
