@@ -66,12 +66,13 @@ class Board:
         print()
 
     # mark position with X or O
-
+    Dan
 
     # winner
-
+    Dan
 
     # when the board is fully marked
+    Dan
 
 
 
@@ -81,6 +82,7 @@ class Player:
     pass
 
     # make a move: player picks the position on the board where they want to put their X or O
+    John
 
 
 
@@ -102,12 +104,15 @@ class TicTacToe:
 
 
     # play method
+    John
 
 
     # switch player turn
+    Jack
 
 
     # method to run the game
+    Jack
 
 
 
