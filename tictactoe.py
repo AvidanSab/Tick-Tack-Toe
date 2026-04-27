@@ -87,13 +87,29 @@ class Board:
 # create the player
 class Player:
     # initializer method: takes players name and their chosen symbol X or O
-    def __init__(self):
-        
-
+    def __init__(self, name, symbol):
+        self.name = name
+        self.symbol = symbol
     # make a move: player picks the position on the board where they want to put their X or O
-    John
-
-
+    def make_move (self,board):
+        while True:
+            boardselection = input(f'{self.name}({self.symbol}) Enter a spot a board that is Valid(1-9):'):
+            if boardselection.isdigit():
+                boardselection_Isdigit = int(boardselection)
+                if 1 <= boardselection_Isdigit <= 9:
+                    boardselection_Isdigit2 = int(boardselection_Isdigit)
+                    #subract one as computer sees boards as 0-8
+                    XOpositions_on_board = boardselection_Isdigit2 - 1
+                    #check to see if there is no previous placement there 
+                    if board.cells[XOpositions_on_board] not in ['X','O']:
+                        return XOpositions_on_board
+                    else:
+                        print('Spot Taken, Please try again.')
+                else:
+                    print('Not a Valid Number from 1-9, Please try again.')
+            else:
+                print('Not a Number, Please try again.')
+pass
 
 # run the game
 class TicTacToe:
