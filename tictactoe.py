@@ -85,6 +85,7 @@ class Board:
 
 
 # create the player
+#John
 class Player:
     # initializer method: takes players name and their chosen symbol X or O
     def __init__(self, name, symbol):
