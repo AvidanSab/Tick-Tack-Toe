@@ -66,12 +66,13 @@ class Board:
         print()
 
     # mark position with X or O
-    def mark(spot,value):
-        for i in range(self.cells)
+    def mark(spot, value):
+            if(self.cells(spot-1)=='O' or self.cells(spot-1) == 'X'):
+                #need to do the try and accept thing.
             if(value==True):
-                self.cell(spot-1) == 'X'
+                self.cells(spot-1) == 'X'
             else:
-                self.cell(spot-1) == 'O'
+                self.cells(spot-1) == 'O'
 
     # winner
     def check_winner();
@@ -79,7 +80,7 @@ class Board:
             if()
 
     # when the board is fully marked
-    def marker():
+    def ful():
         for i in range()
 
 
@@ -88,6 +89,9 @@ class Board:
 #John
 class Player:
     # initializer method: takes players name and their chosen symbol X or O
+    def __init__(self):
+
+
     def __init__(self, name, symbol):
         self.name = name
         self.symbol = symbol
