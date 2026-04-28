@@ -51,11 +51,9 @@ class Board:
         [0, 4, 8], [2, 4, 6],             # diagonals
     ]
 
-    # initializer method
     def __init__(self):
         self.cells = [str(i + 1) for i in range(9)]
 
-    # display board
     def display(self):
         print()
         for row in range(3):
@@ -65,8 +63,8 @@ class Board:
                 print("-----------")
         print()
 
-    # mark position with X or O
     def mark(self, spot, value):
+        # Your logic: spot is 1-9, so we subtract 1 for the list index
         if self.cells[spot-1] == 'O' or self.cells[spot-1] == 'X':
             raise ValueError("Spot is already taken")
         if value == True:
@@ -74,58 +72,46 @@ class Board:
         else:
             self.cells[spot-1] = 'O'
 
-    # winner
     def check_winner(self):
-        for i in range(len(self.WINNING_COMBOS)):
-            combo = self.WINNING_COMBOS[i]
-            
+        for combo in self.WINNING_COMBOS:
             if self.cells[combo[0]] == self.cells[combo[1]] == self.cells[combo[2]]:
                 return self.cells[combo[0]]
-                
         return None
 
-    # when the board is fully marked
     def ful(self):
         for i in range(9):
             if self.cells[i] != 'X' and self.cells[i] != 'O':
-                return False # Board is not full
+                return False 
         return True
 
 
 # create the player
-#John
 class Player:
-    # initializer method: takes players name and their chosen symbol X or O
-    def __init__(self):
-
-
     def __init__(self, name, symbol):
         self.name = name
         self.symbol = symbol
-    # make a move: player picks the position on the board where they want to put their X or O
-    def make_move (self,board):
+
+    # Keeping your specific input validation logic
+    def make_move(self, board):
         while True:
-            boardselection = input(f'{self.name}({self.symbol}) Enter a spot a board that is Valid(1-9):'):
+            boardselection = input(f'{self.name} ({self.symbol}), enter position (1-9): ')
             if boardselection.isdigit():
                 boardselection_Isdigit = int(boardselection)
                 if 1 <= boardselection_Isdigit <= 9:
-                    boardselection_Isdigit2 = int(boardselection_Isdigit)
-                    #subract one as computer sees boards as 0-8
-                    XOpositions_on_board = boardselection_Isdigit2 - 1
-                    #check to see if there is no previous placement there 
-                    if board.cells[XOpositions_on_board] not in ['X','O']:
-                        return XOpositions_on_board
+                    # check to see if there is no previous placement there 
+                    # (Note: we check boardselection_Isdigit - 1 to match list indexing)
+                    if board.cells[boardselection_Isdigit - 1] not in ['X','O']:
+                        return boardselection_Isdigit 
                     else:
                         print('Spot Taken, Please try again.')
                 else:
                     print('Not a Valid Number from 1-9, Please try again.')
             else:
                 print('Not a Number, Please try again.')
-pass
+
 
 # run the game
 class TicTacToe:
-    # initializer method
     def __init__(self):
         print("\n=== Tic Tac Toe ===")
         name1 = input("Player 1 name (X): ").strip() or "Player 1"
@@ -136,60 +122,38 @@ class TicTacToe:
             Player(name2, "O"),
         ]
         self.board = Board()
-        self.current = 0  # index into self.players
-        pass
+        self.current = 0 
 
+    def switch_turn(self): # Renamed from switch_player to match your method name
+        self.current = 1 - self.current
 
-    # play method
     def play(self):
         while True:
             self.board.display()
             current_player = self.players[self.current]
             
-            if self.current == 0:
-                is_x = True
-            else:
-                is_x = False
+            is_x = (self.current == 0)
                 
-            move_index = current_player.make_move(self.board)
-            spot = move_index + 1
+            # Use your make_move logic
+            spot = current_player.make_move(self.board)
+            
+            # Mark the board
             self.board.mark(spot, is_x)
+            
             winner = self.board.check_winner()
             if winner != None:
                 self.board.display()
                 print(f"Congratulations! {current_player.name} ({winner}) wins!")
-                break  # Ends the game loop
+                break 
                 
-            # 8. Check if the board is completely full (a tie)
             if self.board.ful() == True:
                 self.board.display()
                 print("The board is full! It's a tie!")
-                break  # Ends the game loop
+                break 
                 
-            # 9. Switch to the next player's turn
-            self.switch_player()
-
-
-    # switch player turn
-    def switch_turn(self):
-        self.current = 1 - self.current
-
-    # method to run the game
-    def run(self):
-        self.board.display()
-        while True:
-            self.play()
-            player = self.players[self.current]
-
-            if self.board.has_winner(player.symbol):
-                print(f" {player.name} ({player.symbol}) wins! 🎉")
-                break
-
-            if self.board.is_full():
-                print(" It's a draw!")
-                break
-
             self.switch_turn()
 
-
-
+# Execution
+if __name__ == "__main__":
+    game = TicTacToe()
+    game.play()
