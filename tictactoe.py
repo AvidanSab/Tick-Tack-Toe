@@ -145,12 +145,25 @@ class TicTacToe:
 
 
     # switch player turn
-    Jack
-
+    def switch_turn(self):
+        self.current = 1 - self.current
 
     # method to run the game
-    Jack
+    def run(self):
+        self.board.display()
+        while True:
+            self.play()
+            player = self.players[self.current]
 
+            if self.board.has_winner(player.symbol):
+                print(f" {player.name} ({player.symbol}) wins! 🎉")
+                break
+
+            if self.board.is_full():
+                print(" It's a draw!")
+                break
+
+            self.switch_turn()
 
 
 
