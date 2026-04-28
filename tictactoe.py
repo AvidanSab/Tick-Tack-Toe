@@ -66,23 +66,30 @@ class Board:
         print()
 
     # mark position with X or O
-    def mark(spot, value):
-            if(self.cells(spot-1)=='O' or self.cells(spot-1) == 'X'):
-                #need to do the try and accept thing.
-            if(value==True):
-                self.cells(spot-1) == 'X'
-            else:
-                self.cells(spot-1) == 'O'
+    def mark(self, spot, value):
+        if self.cells[spot-1] == 'O' or self.cells[spot-1] == 'X':
+            raise ValueError("Spot is already taken")
+        if value == True:
+            self.cells[spot-1] = 'X'
+        else:
+            self.cells[spot-1] = 'O'
 
     # winner
-    def check_winner();
-        for i in range(len(WINNING_COMBOS)):
-            if()
+    def check_winner(self):
+        for i in range(len(self.WINNING_COMBOS)):
+            combo = self.WINNING_COMBOS[i]
+            
+            if self.cells[combo[0]] == self.cells[combo[1]] == self.cells[combo[2]]:
+                return self.cells[combo[0]]
+                
+        return None
 
     # when the board is fully marked
-    def ful():
-        for i in range()
-
+    def ful(self):
+        for i in range(9):
+            if self.cells[i] != 'X' and self.cells[i] != 'O':
+                return False # Board is not full
+        return True
 
 
 # create the player
