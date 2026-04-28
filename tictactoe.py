@@ -141,7 +141,33 @@ class TicTacToe:
 
 
     # play method
-    John
+    def play(self):
+        while True:
+            self.board.display()
+            current_player = self.players[self.current]
+            
+            if self.current == 0:
+                is_x = True
+            else:
+                is_x = False
+                
+            move_index = current_player.make_move(self.board)
+            spot = move_index + 1
+            self.board.mark(spot, is_x)
+            winner = self.board.check_winner()
+            if winner != None:
+                self.board.display()
+                print(f"Congratulations! {current_player.name} ({winner}) wins!")
+                break  # Ends the game loop
+                
+            # 8. Check if the board is completely full (a tie)
+            if self.board.ful() == True:
+                self.board.display()
+                print("The board is full! It's a tie!")
+                break  # Ends the game loop
+                
+            # 9. Switch to the next player's turn
+            self.switch_player()
 
 
     # switch player turn
