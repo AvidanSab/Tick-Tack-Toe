@@ -124,7 +124,7 @@ class TicTacToe:
         self.board = Board()
         self.current = 0 
 
-    def switch_turn(self): # Renamed from switch_player to match your method name
+    def switch_turn(self):
         self.current = 1 - self.current
 
     def play(self):
@@ -134,10 +134,8 @@ class TicTacToe:
             
             is_x = (self.current == 0)
                 
-            # Use your make_move logic
             spot = current_player.make_move(self.board)
             
-            # Mark the board
             self.board.mark(spot, is_x)
             
             winner = self.board.check_winner()
